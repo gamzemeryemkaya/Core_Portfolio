@@ -1,0 +1,42 @@
+﻿@using EntityLayer.Concrete
+@model List<WriterMessage>
+@{
+    ViewData["Title"] = "OutBoxMessageList";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kullanıcı(Yazar)-Admin Giden Kutusu</h4>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Alıcı</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>Sil</th>
+                            <th>Mesajı Gör</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var w in Model)
+                        {
+                            <tr>
+                                <td>@w.WriterMessageID</td>
+                                <td>@w.ReceiverName</td>
+                                <td>@w.Subject</td>
+                                <td>@w.Date</td>
+                                <td><a  href="/AdminMessage/AdminWriterMessageDelete/@w.WriterMessageID" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/AdminMessage/AdminWriterMessageDetails/@w.WriterMessageID" class="btn btn-outline-info">Mesajı Gör</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
